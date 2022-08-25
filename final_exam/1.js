@@ -1,0 +1,51 @@
+function strGame(input) {
+    let text = input.shift();
+    for (let i = 0; i < input.length; i++) {
+        let [command, v1, v2] = input[i].split(' ');
+        let result;
+        if (command == 'Done') break;
+
+        if (command == 'Change') {
+            while (text.includes(v1)) {
+                text = text.replace(v1, v2);
+            }
+            console.log(text);
+
+        } else if (command == 'Includes') {
+            if (text.includes(v1)) {
+                console.log('True');
+            } else {
+                console.log('False');
+            }
+        } else if (command == 'End') {
+            if (input[input.length] == v1) {
+                console.log('True');
+            } else {
+                console.log('False');
+            }
+        } else if (command == 'Uppercase') {
+            text = text.toUpperCase();
+            console.log(text);
+        } else if (command == 'FindIndex') {
+            if (text.includes(v1)) {
+                console.log(text.indexOf(v1));
+            }
+        } else if (command == 'Cut') {
+            v1 = +v1
+            v2 = +v2
+            text = text.slice(v1, v1 + v2)
+            console.log(text);
+        }
+    }
+}
+
+
+strGame(["//Th1s 1s my str1ng!//",
+    "Change 1 i",
+    "Includes string",
+    "End my",
+    "Uppercase",
+    "FindIndex I",
+    "Cut 5 5",
+    "Done"
+]);
